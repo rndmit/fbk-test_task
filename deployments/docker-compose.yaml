@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  db:
+    container_name: db
+    build: ./db
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    volumes:
+      - ../.tmp/postgresql:/var/lib/postgresql/data
