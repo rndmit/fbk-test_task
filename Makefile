@@ -17,6 +17,10 @@ local-down:
 	@docker-compose -f deployments/docker-compose.yaml down
 
 .PHONY: cleanup
-cleanup:
+cleanup: ## Удалить все порожденное компоузом
 	@rm -rf .tmp
 	@docker image rm deployments_db:latest
+	@docker image rm deployments_app:latest
+
+.PHONE: drop
+drop: local-down cleanup

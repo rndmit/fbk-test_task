@@ -13,3 +13,15 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - ../.tmp/postgresql:/var/lib/postgresql/data
+  app:
+    container_name: app
+    build: ../app
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    environment:
+      APP_DB_HOST: db
+      APP_DB_PORT: 5432
+      APP_DB_NAME: postgres
+      APP_DB_USER: user
+      APP_DB_PASSWORD: password
