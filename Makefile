@@ -15,3 +15,8 @@ local-up:
 
 local-down:
 	@docker-compose -f deployments/docker-compose.yaml down
+
+.PHONY: cleanup
+cleanup:
+	@rm -rf .tmp
+	@docker image rm deployments_db:latest

@@ -1,5 +1,5 @@
 import psycopg2
-from config import DatabaseConfig
+from .config import DatabaseConfig
 
 
 class DB():
