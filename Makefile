@@ -1,6 +1,9 @@
 all:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "    \033[36m%-20s\033[0m %s\n", $$1, $$2}'
 	@echo
+	@echo 'Доступные команды для управления локальным стедом:'
+	@echo 'up – запускает локальный стенд'
+	@echo 'down – останавливает локальный стенд'
 
 ifeq (local,$(firstword $(MAKECMDGOALS)))
   RUN_ARGS := $(word 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
@@ -8,7 +11,7 @@ ifeq (local,$(firstword $(MAKECMDGOALS)))
 endif
 
 .PHONY: local
-local: local-$(RUN_ARGS) ## Управление локальной средой разработки
+local: local-$(RUN_ARGS) ## Управление локальным стендом
 
 local-up:
 	@docker-compose -f deployments/docker-compose.yaml up -d
