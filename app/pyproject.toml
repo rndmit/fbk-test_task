@@ -2,7 +2,7 @@
 name = "fbk-testtask"
 version = "0.1.0"
 description = ""
-authors = ["Your Name <you@example.com>"]
+authors = ["Timur Scobcov <scobcov@icloud.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
