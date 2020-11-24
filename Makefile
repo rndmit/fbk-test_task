@@ -21,6 +21,7 @@ cleanup: ## Удалить все порожденное компоузом
 	@rm -rf .tmp
 	@docker image rm deployments_db:latest
 	@docker image rm deployments_app:latest
+	@docker image rm deployments_nginx:latest
 
 .PHONE: drop
 drop: local-down cleanup

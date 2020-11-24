@@ -8,6 +8,7 @@ authors = ["Timur Scobcov <scobcov@icloud.com>"]
 python = "^3.8"
 flask = "^1.1.2"
 psycopg2 = "^2.8.6"
+waitress = "^1.4.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "^4.6"

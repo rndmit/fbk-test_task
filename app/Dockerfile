@@ -1,12 +1,6 @@
-FROM python:3.8-alpine
+FROM python:3.8
 
 ENV FLASK_APP=src
-
-RUN apk add --no-cache \
-    gcc \
-    python3-dev \
-    musl-dev \
-    postgresql-dev
 
 WORKDIR /app
 
@@ -14,6 +8,6 @@ COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["flask", "run"]
+CMD waitress-serve --call 'src:create_app' 
 
-EXPOSE 5000
+EXPOSE 8080

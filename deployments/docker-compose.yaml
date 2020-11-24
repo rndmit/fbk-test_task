@@ -1,5 +1,9 @@
 version: '3'
 
+networks:
+  internal:
+    external: false
+
 services:
   db:
     container_name: db
@@ -7,6 +11,8 @@ services:
     restart: unless-stopped
     ports:
       - 5432:5432
+    networks:
+      - internal
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: user
@@ -17,11 +23,19 @@ services:
     container_name: app
     build: ../app
     restart: unless-stopped
-    ports:
-      - 5000:5000
+    networks:
+      - internal
     environment:
       APP_DB_HOST: db
       APP_DB_PORT: 5432
       APP_DB_NAME: postgres
       APP_DB_USER: user
       APP_DB_PASSWORD: password
+  nginx:
+    container_name: reverse_proxy
+    build: ./nginx
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    networks:
+      - internal
